@@ -348,13 +348,24 @@ val codeqlCompileJvm = tasks.register<JavaExec>("codeqlCompileJvm") {
     mainClass.set("org.jetbrains.kotlin.cli.jvm.K2JVMCompiler")
 
     val outDir = layout.buildDirectory.dir("classes/kotlin/codeql-jvm")
+    val emptySourceSentinel = layout.buildDirectory.file("generated/codeql-empty/CodeqlEmptySourceSentinel.kt")
     val sources = fileTree("src/commonMain/kotlin") { include("**/*.kt") }
     inputs.files(sources).withPathSensitivity(PathSensitivity.RELATIVE)
     inputs.files(codeqlSourceClasspath).withNormalizer(ClasspathNormalizer::class.java)
     outputs.dir(outDir)
+    outputs.file(emptySourceSentinel)
 
     doFirst {
         outDir.get().asFile.mkdirs()
+        val sourceFiles = sources.files.toList().ifEmpty {
+            val sentinelFile = emptySourceSentinel.get().asFile
+            sentinelFile.parentFile.mkdirs()
+            sentinelFile.writeText(
+                "package io.github.kotlinmania.asyncio\n\n" +
+                    "internal object CodeqlEmptySourceSentinel\n",
+            )
+            listOf(sentinelFile)
+        }
         args = listOf(
             "-d", outDir.get().asFile.absolutePath,
             "-classpath", codeqlSourceClasspath.asPath,
@@ -366,7 +377,7 @@ val codeqlCompileJvm = tasks.register<JavaExec>("codeqlCompileJvm") {
             "-opt-in", "kotlin.time.ExperimentalTime",
             "-opt-in", "kotlin.concurrent.atomics.ExperimentalAtomicApi",
             "-Xexpect-actual-classes",
-        ) + sources.files.map { it.absolutePath }
+        ) + sourceFiles.map { it.absolutePath }
     }
 }
 
