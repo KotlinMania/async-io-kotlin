@@ -213,7 +213,11 @@ kotlin {
         binaries.framework { baseName = "AsyncIo"; xcf.add(this) }
     }
     iosArm64 {
-        binaries.framework { baseName = "AsyncIo"; xcf.add(this) }
+        binaries.framework {
+            baseName = "AsyncIo"
+            isStatic = true
+            xcf.add(this)
+        }
     }
     iosSimulatorArm64 {
         binaries.framework {
