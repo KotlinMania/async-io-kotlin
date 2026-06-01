@@ -2,10 +2,15 @@
 package io.github.kotlinmania.asyncio.os
 
 /**
+ * Unix-specific platform APIs.
+ */
+object Unix
+
+/**
  * A borrowed platform file descriptor.
  */
-public class BorrowedFd internal constructor(
-    public val raw: Long,
+class BorrowedFd internal constructor(
+    val raw: Long,
 ) {
     override fun equals(other: Any?): Boolean = other is BorrowedFd && raw == other.raw
 
@@ -44,4 +49,7 @@ public class BorrowedFd internal constructor(
  * myRuntime.register(fd)
  * ```
  */
-public fun reactorFd(): BorrowedFd? = null
+fun reactorFd(): BorrowedFd? {
+    val fd: BorrowedFd? = null
+    return fd
+}
