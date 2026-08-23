@@ -8,10 +8,10 @@ Based on AST analysis, here are the concrete next steps.
 - **Function parity:** 85/133 matched (target 106) — 63.9%
 - **Class/type parity:** 22/34 matched (target 40) — 64.7%
 - **Combined symbol parity:** 107/167 matched (target 146) — 64.1%
-- **Average inline-code cosine:** 0.23 (function body across 9 matched files)
-- **Average documentation cosine:** 0.60 (doc text across 9 matched files)
+- **Average inline-code cosine:** 0.31 (function body across 10 matched files)
+- **Average documentation cosine:** 0.60 (doc text across 10 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 10 files with <0.60 function similarity
+- **Critical Issues:** 9 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -37,7 +37,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `readable_owned`, `writable_owned`, `ready`, `poll`, `fmt`, `drop`
 - **Types:** 10/11 matched (target 12)
 - **Missing types:** `Output`
-- **Lint issues:** 1
 
 ### 2. lib
 
@@ -86,26 +85,24 @@ Every matched file is listed below with function and type symbol parity.
 ### 6. reactor.windows
 
 - **Target:** `reactor.Windows`
-- **Similarity:** 0.41
+- **Similarity:** 0.44
 - **Dependents:** 0
-- **Priority Score:** 705.9
+- **Priority Score:** 705.6
 - **Functions:** 6/6 matched
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
-- **Lint issues:** 1
 
 ### 7. reactor.kqueue
 
 - **Target:** `reactor.Kqueue`
-- **Similarity:** 0.30
+- **Similarity:** 0.33
 - **Dependents:** 0
-- **Priority Score:** 607.0
+- **Priority Score:** 606.7
 - **Functions:** 5/5 matched
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
-- **Lint issues:** 1
 
 ### 8. reactor.unix
 
@@ -117,7 +114,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 2)
 - **Missing types:** _none_
-- **Lint issues:** 1
 
 ### 9. os.unix
 
@@ -132,7 +128,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 10. os
 
-- **Target:** `os.Os [STUB]`
+- **Target:** `os.Os`
 - **Similarity:** 1.00
 - **Dependents:** 0
 - **Priority Score:** 0.0

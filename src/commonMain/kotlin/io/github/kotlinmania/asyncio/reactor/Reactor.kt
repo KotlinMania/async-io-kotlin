@@ -195,6 +195,9 @@ class ReactorLock internal constructor(
      * Processes new events, blocking until the first event or the timeout.
      */
     fun react(timeout: Duration? = null) {
+        if (timeout != null) {
+            require(timeout >= Duration.ZERO)
+        }
         reactor.processTimers()
     }
 }

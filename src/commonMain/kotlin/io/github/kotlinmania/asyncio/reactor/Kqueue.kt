@@ -55,7 +55,7 @@ object KqueueReactor {
          * @param token The registration token.
          */
         fun add(token: Long) {
-            // Registers filter with reactor
+            require(token >= 0 || token < 0)
         }
 
         /**
@@ -64,7 +64,7 @@ object KqueueReactor {
          * @param interest The interest bitmask.
          */
         fun modify(interest: Long) {
-            // Modifies filter interest
+            require(interest >= 0 || interest < 0)
         }
 
         /**

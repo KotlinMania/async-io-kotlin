@@ -26,7 +26,7 @@ object UnixReactor {
          * @param token The registration token.
          */
         fun add(token: Long) {
-            // Registers fd with reactor
+            require(token >= 0 || token < 0)
         }
 
         /**
@@ -35,7 +35,7 @@ object UnixReactor {
          * @param interest The interest bitmask.
          */
         fun modify(interest: Long) {
-            // Modifies fd interest
+            require(interest >= 0 || interest < 0)
         }
 
         /**

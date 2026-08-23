@@ -44,7 +44,7 @@ object WindowsReactor {
          * @param token The registration token.
          */
         fun add(token: Long) {
-            // Registers handle with reactor
+            require(token >= 0 || token < 0)
         }
 
         /**
@@ -53,7 +53,7 @@ object WindowsReactor {
          * @param interest The interest bitmask.
          */
         fun modify(interest: Long) {
-            // Modifies handle interest
+            require(interest >= 0 || interest < 0)
         }
 
         /**
