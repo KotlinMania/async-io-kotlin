@@ -8,6 +8,10 @@ object Unix
 
 /**
  * A borrowed platform file descriptor.
+ *
+ * This describes a valid file descriptor that has not been closed.
+ *
+ * @property raw The raw integer file descriptor.
  */
 class BorrowedFd internal constructor(
     val raw: Long,
