@@ -27,11 +27,14 @@ object Driver {
 fun <T> blockOn(block: suspend () -> T): T {
     Driver.init()
     var capturedResult: Result<T>? = null
-    block.startCoroutine(object : Continuation<T> {
-        override val context: CoroutineContext = EmptyCoroutineContext
-        override fun resumeWith(result: Result<T>) {
-            capturedResult = result
-        }
-    })
+    block.startCoroutine(
+        object : Continuation<T> {
+            override val context: CoroutineContext = EmptyCoroutineContext
+
+            override fun resumeWith(result: Result<T>) {
+                capturedResult = result
+            }
+        },
+    )
     return capturedResult?.getOrThrow() ?: error("blockOn suspended asynchronously")
 }

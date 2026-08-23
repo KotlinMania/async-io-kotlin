@@ -17,30 +17,37 @@ object KqueueReactor {
          *
          * @property raw The file descriptor integer.
          */
-        data class Fd(val raw: Long) : Registration()
+        data class Fd(
+            val raw: Long,
+        ) : Registration()
 
         /**
          * Raw signal number for signal delivery.
          *
          * @property signal The signal to monitor.
          */
-        data class SignalRegistration(val signal: Signal) : Registration()
+        data class SignalRegistration(
+            val signal: Signal,
+        ) : Registration()
 
         /**
          * Process identifier for process termination.
          *
          * @property exit The exit watcher containing the PID.
          */
-        data class ProcessRegistration(val exit: Exit) : Registration()
+        data class ProcessRegistration(
+            val exit: Exit,
+        ) : Registration()
 
         /**
          * Formats the registration for debugging.
          */
-        fun fmt(): String = when (this) {
-            is Fd -> "Registration.Fd($raw)"
-            is SignalRegistration -> "Registration.SignalRegistration($signal)"
-            is ProcessRegistration -> "Registration.ProcessRegistration($exit)"
-        }
+        fun fmt(): String =
+            when (this) {
+                is Fd -> "Registration.Fd($raw)"
+                is SignalRegistration -> "Registration.SignalRegistration($signal)"
+                is ProcessRegistration -> "Registration.ProcessRegistration($exit)"
+            }
 
         /**
          * Registers the object into the reactor.

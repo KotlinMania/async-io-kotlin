@@ -16,22 +16,27 @@ object WindowsReactor {
          *
          * @property raw The socket handle.
          */
-        data class Socket(val raw: Long) : Registration()
+        data class Socket(
+            val raw: Long,
+        ) : Registration()
 
         /**
          * Waitable handle on Windows.
          *
          * @property raw The waitable handle.
          */
-        data class Handle(val raw: Long) : Registration()
+        data class Handle(
+            val raw: Long,
+        ) : Registration()
 
         /**
          * Formats the registration for debugging.
          */
-        fun fmt(): String = when (this) {
-            is Socket -> "Registration.Socket($raw)"
-            is Handle -> "Registration.Handle($raw)"
-        }
+        fun fmt(): String =
+            when (this) {
+                is Socket -> "Registration.Socket($raw)"
+                is Handle -> "Registration.Handle($raw)"
+            }
 
         /**
          * Registers the object into the reactor.
