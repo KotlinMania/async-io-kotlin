@@ -8,7 +8,6 @@ import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TimeSource
 
 class TimerTest {
-
     @Test
     fun testNeverTimer() {
         val timer = Timer.never()

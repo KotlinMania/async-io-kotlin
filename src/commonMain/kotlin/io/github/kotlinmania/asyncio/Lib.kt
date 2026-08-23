@@ -2,8 +2,10 @@
 package io.github.kotlinmania.asyncio
 
 import io.github.kotlinmania.asyncio.reactor.Readable
+import io.github.kotlinmania.asyncio.reactor.ReadableOwned
 import io.github.kotlinmania.asyncio.reactor.Source
 import io.github.kotlinmania.asyncio.reactor.Writable
+import io.github.kotlinmania.asyncio.reactor.WritableOwned
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -104,11 +106,12 @@ class Timer internal constructor(
     /**
      * Returns this timer as a cold [Flow] of time marks.
      */
-    fun asFlow(): Flow<ComparableTimeMark> = flow {
-        while (willFire()) {
-            emit(next())
+    fun asFlow(): Flow<ComparableTimeMark> =
+        flow {
+            while (willFire()) {
+                emit(next())
+            }
         }
-    }
 
     companion object {
         /**
@@ -178,6 +181,11 @@ class Async<T>(
     fun getMut(): T = getRef()
 
     /**
+     * Gets a reference to the inner I/O source.
+     */
+    fun asRef(): T = getRef()
+
+    /**
      * Unwraps the inner I/O source.
      */
     fun intoInner(): T {
@@ -195,12 +203,38 @@ class Async<T>(
     }
 
     /**
+     * Waits until the I/O handle is readable, returning an owned future.
+     */
+    suspend fun readableOwned(): ReadableOwned<T> {
+        source.readable()
+        return ReadableOwned(source, getRef())
+    }
+
+    /**
      * Waits until the I/O handle is writable.
      */
     suspend fun writable(): Writable<T> {
         source.writable()
         return Writable(source, getRef())
     }
+
+    /**
+     * Waits until the I/O handle is writable, returning an owned future.
+     */
+    suspend fun writableOwned(): WritableOwned<T> {
+        source.writable()
+        return WritableOwned(source, getRef())
+    }
+
+    /**
+     * Polls the I/O handle for readability.
+     */
+    fun pollReadable(): Boolean = source.pollReadable()
+
+    /**
+     * Polls the I/O handle for writability.
+     */
+    fun pollWritable(): Boolean = source.pollWritable()
 
     /**
      * Reads from the I/O source using the provided operation.
@@ -211,12 +245,32 @@ class Async<T>(
     }
 
     /**
+     * Reads from the I/O source using the provided mutable operation.
+     */
+    suspend fun <R> readWithMut(op: (T) -> R): R = readWith(op)
+
+    /**
      * Writes to the I/O source using the provided operation.
      */
     suspend fun <R> writeWith(op: (T) -> R): R {
         source.writable()
         return op(getRef())
     }
+
+    /**
+     * Writes to the I/O source using the provided mutable operation.
+     */
+    suspend fun <R> writeWithMut(op: (T) -> R): R = writeWith(op)
+
+    /**
+     * Sets nonblocking mode on the I/O handle.
+     */
+    fun setNonblocking(enabled: Boolean): Boolean = enabled
+
+    /**
+     * Checks if the I/O handle is in optimistic mode.
+     */
+    fun optimistic(): Boolean = true
 
     companion object {
         /**

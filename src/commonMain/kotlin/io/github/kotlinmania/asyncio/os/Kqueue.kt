@@ -7,9 +7,14 @@ package io.github.kotlinmania.asyncio.os
 object Kqueue
 
 /**
+ * Sealed interface for queueable elements.
+ */
+interface QueueableSealed
+
+/**
  * Objects that can be registered into the reactor via a [Filter].
  */
-interface Queueable
+interface Queueable : QueueableSealed
 
 /**
  * An object representing a signal.
@@ -60,9 +65,19 @@ class Filter<T : Queueable>(
     fun getRef(): T = filter ?: error("filter has been consumed")
 
     /**
+     * Gets a reference to the underlying [Queueable] object.
+     */
+    fun asRef(): T = getRef()
+
+    /**
      * Gets a mutable reference to the underlying [Queueable] object.
      */
     fun getMut(): T = getRef()
+
+    /**
+     * Gets a mutable reference to the underlying [Queueable] object.
+     */
+    fun asMut(): T = getRef()
 
     /**
      * Unwraps the inner [Queueable] object.
@@ -79,6 +94,16 @@ class Filter<T : Queueable>(
     suspend fun ready() {
         // Readiness notification completes when the filter event triggers
     }
+
+    /**
+     * Polls the filter for readiness.
+     */
+    fun pollReady(): Boolean = true
+
+    /**
+     * Polls the filter.
+     */
+    fun poll(): Boolean = true
 
     companion object {
         /**

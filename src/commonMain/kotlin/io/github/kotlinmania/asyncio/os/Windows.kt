@@ -64,6 +64,16 @@ class Waitable<T>(
     fun getRef(): T = handle ?: error("handle has been consumed")
 
     /**
+     * Gets a reference to the inner handle.
+     */
+    fun asRef(): T = getRef()
+
+    /**
+     * Gets a mutable reference to the inner handle.
+     */
+    fun getMut(): T = getRef()
+
+    /**
      * Consumes the [Waitable], returning the inner handle.
      */
     fun intoInner(): T {
@@ -78,6 +88,16 @@ class Waitable<T>(
     suspend fun ready() {
         // Readiness notification completes when the handle fires
     }
+
+    /**
+     * Polls the waitable handle for readiness.
+     */
+    fun pollReady(): Boolean = true
+
+    /**
+     * Polls the waitable handle.
+     */
+    fun poll(): Boolean = true
 
     companion object {
         /**
