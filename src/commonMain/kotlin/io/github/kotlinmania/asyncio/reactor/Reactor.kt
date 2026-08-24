@@ -105,14 +105,14 @@ class Source internal constructor(
  */
 class Readable<T>(
     private val source: Source,
-    private val io: T,
+    private val ioHandle: T,
 ) {
     /**
      * Awaits readiness.
      */
     suspend fun await(): T {
         source.readable()
-        return io
+        return ioHandle
     }
 }
 
@@ -121,14 +121,14 @@ class Readable<T>(
  */
 class ReadableOwned<T>(
     private val source: Source,
-    private val io: T,
+    private val ioHandle: T,
 ) {
     /**
      * Awaits readiness.
      */
     suspend fun await(): T {
         source.readable()
-        return io
+        return ioHandle
     }
 }
 
@@ -137,14 +137,14 @@ class ReadableOwned<T>(
  */
 class Writable<T>(
     private val source: Source,
-    private val io: T,
+    private val ioHandle: T,
 ) {
     /**
      * Awaits readiness.
      */
     suspend fun await(): T {
         source.writable()
-        return io
+        return ioHandle
     }
 }
 
@@ -153,14 +153,14 @@ class Writable<T>(
  */
 class WritableOwned<T>(
     private val source: Source,
-    private val io: T,
+    private val ioHandle: T,
 ) {
     /**
      * Awaits readiness.
      */
     suspend fun await(): T {
         source.writable()
-        return io
+        return ioHandle
     }
 }
 
@@ -169,7 +169,7 @@ class WritableOwned<T>(
  */
 class Ready<T>(
     val source: Source,
-    val io: T,
+    val ioHandle: T,
     val direction: Int,
 ) {
     /**
@@ -181,7 +181,7 @@ class Ready<T>(
         } else {
             source.writable()
         }
-        return io
+        return ioHandle
     }
 }
 
@@ -308,6 +308,6 @@ class Reactor private constructor() {
         /**
          * Returns the global reactor instance.
          */
-        fun get(): Reactor = instance
+        internal fun get(): Reactor = instance
     }
 }
