@@ -41,9 +41,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 2. lib
 
 - **Target:** `asyncio.Lib`
-- **Similarity:** 0.19
+- **Similarity:** 0.18
 - **Dependents:** 0
-- **Priority Score:** 316308.1
+- **Priority Score:** 316308.2
 - **Functions:** 29/57 matched (target 31)
 - **Missing functions:** `drop`, `poll`, `poll_next`, `as_raw_fd`, `as_fd`, `try_from`, `as_raw_socket`, `as_socket`, `poll_read`, `poll_read_vectored`, `poll_write`, `poll_write_vectored`, `poll_flush`, `poll_close`, `bind`, `accept`, `incoming`, `connect`, `peek`, `recv_from`, `peek_from`, `send_to`, `recv`, `send`, `pair`, `unbound`, `setup_networking`, `convert_path_to_socket_address`
 - **Types:** 3/6 matched (target 3)

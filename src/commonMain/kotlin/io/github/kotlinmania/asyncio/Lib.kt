@@ -164,16 +164,16 @@ class Timer internal constructor(
  *
  * @param T The wrapped I/O type.
  * @property source The internal reactor source.
- * @property io The underlying I/O handle.
+ * @property ioHandle The underlying I/O handle.
  */
 class Async<T>(
     internal val source: Source,
-    private var io: T?,
+    private var ioHandle: T?,
 ) {
     /**
      * Gets a reference to the inner I/O source.
      */
-    fun getRef(): T = io ?: error("I/O handle has been consumed")
+    fun getRef(): T = ioHandle ?: error("I/O handle has been consumed")
 
     /**
      * Gets a mutable reference to the inner I/O source.
@@ -189,8 +189,8 @@ class Async<T>(
      * Unwraps the inner I/O source.
      */
     fun intoInner(): T {
-        val inner = io ?: error("I/O handle has been consumed")
-        io = null
+        val inner = ioHandle ?: error("I/O handle has been consumed")
+        ioHandle = null
         return inner
     }
 
@@ -276,11 +276,11 @@ class Async<T>(
         /**
          * Wraps an I/O handle into an [Async] instance.
          */
-        fun <T> new(io: T): Async<T> = Async(Source(0L), io)
+        fun <T> new(ioHandle: T): Async<T> = Async(Source(0L), ioHandle)
 
         /**
          * Creates a new [Async] instance for an I/O handle already in non-blocking mode.
          */
-        fun <T> newNonblocking(io: T): Async<T> = Async(Source(0L), io)
+        fun <T> newNonblocking(ioHandle: T): Async<T> = Async(Source(0L), ioHandle)
     }
 }
