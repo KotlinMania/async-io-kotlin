@@ -98,6 +98,23 @@ class Source internal constructor(
     suspend fun writable() {
         // Awaits writable event
     }
+
+    companion object {
+        /** Creates a Readable future helper for the given source and handle. */
+        fun <T> readable(source: Source, handle: T): Readable<T> = Readable(source, handle)
+
+        /** Creates an owned Readable future helper for the given source and handle. */
+        fun <T> readableOwned(source: Source, handle: T): ReadableOwned<T> = ReadableOwned(source, handle)
+
+        /** Creates a Writable future helper for the given source and handle. */
+        fun <T> writable(source: Source, handle: T): Writable<T> = Writable(source, handle)
+
+        /** Creates an owned Writable future helper for the given source and handle. */
+        fun <T> writableOwned(source: Source, handle: T): WritableOwned<T> = WritableOwned(source, handle)
+
+        /** Creates a Ready helper for the given source, handle, and direction. */
+        fun <T> ready(source: Source, handle: T, dir: Int): Ready<T> = Ready(source, handle, dir)
+    }
 }
 
 /**
@@ -107,9 +124,13 @@ class Readable<T>(
     private val source: Source,
     private val ioHandle: T,
 ) {
-    /**
-     * Awaits readiness.
-     */
+    /** Polls whether readable. */
+    fun poll(): Boolean = source.pollReadable()
+
+    /** Returns readiness state. */
+    fun ready(): Boolean = source.pollReadable()
+
+    /** Awaits readiness. */
     suspend fun await(): T {
         source.readable()
         return ioHandle
@@ -123,9 +144,13 @@ class ReadableOwned<T>(
     private val source: Source,
     private val ioHandle: T,
 ) {
-    /**
-     * Awaits readiness.
-     */
+    /** Polls whether readable. */
+    fun poll(): Boolean = source.pollReadable()
+
+    /** Returns readiness state. */
+    fun ready(): Boolean = source.pollReadable()
+
+    /** Awaits readiness. */
     suspend fun await(): T {
         source.readable()
         return ioHandle
@@ -139,9 +164,13 @@ class Writable<T>(
     private val source: Source,
     private val ioHandle: T,
 ) {
-    /**
-     * Awaits readiness.
-     */
+    /** Polls whether writable. */
+    fun poll(): Boolean = source.pollWritable()
+
+    /** Returns readiness state. */
+    fun ready(): Boolean = source.pollWritable()
+
+    /** Awaits readiness. */
     suspend fun await(): T {
         source.writable()
         return ioHandle
@@ -155,9 +184,13 @@ class WritableOwned<T>(
     private val source: Source,
     private val ioHandle: T,
 ) {
-    /**
-     * Awaits readiness.
-     */
+    /** Polls whether writable. */
+    fun poll(): Boolean = source.pollWritable()
+
+    /** Returns readiness state. */
+    fun ready(): Boolean = source.pollWritable()
+
+    /** Awaits readiness. */
     suspend fun await(): T {
         source.writable()
         return ioHandle
@@ -172,9 +205,13 @@ class Ready<T>(
     val ioHandle: T,
     val direction: Int,
 ) {
-    /**
-     * Awaits readiness.
-     */
+    /** Polls whether ready in the specified direction. */
+    fun poll(): Boolean = source.pollReady(direction)
+
+    /** Returns readiness state. */
+    fun ready(): Boolean = source.pollReady(direction)
+
+    /** Awaits readiness. */
     suspend fun await(): T {
         if (direction == 0) {
             source.readable()
