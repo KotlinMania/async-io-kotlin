@@ -209,7 +209,7 @@ class Ready<T>(
     fun poll(): Boolean = source.pollReady(direction)
 
     /** Returns readiness state. */
-    fun ready(): Boolean = source.pollReady(direction)
+    fun isReady(): Boolean = source.pollReady(direction)
 
     /** Awaits readiness. */
     suspend fun await(): T {
