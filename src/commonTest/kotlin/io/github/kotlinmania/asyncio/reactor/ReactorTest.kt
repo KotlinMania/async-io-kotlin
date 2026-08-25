@@ -75,12 +75,12 @@ class ReactorTest {
             val source = Source(10L)
             val readyRead = Ready(source, "data-read", 0)
             assertTrue(readyRead.poll())
-            assertTrue(readyRead.ready())
+            assertTrue(readyRead.isReady())
             assertEquals("data-read", readyRead.await())
 
             val readyWrite = Ready(source, "data-write", 1)
             assertTrue(readyWrite.poll())
-            assertTrue(readyWrite.ready())
+            assertTrue(readyWrite.isReady())
             assertEquals("data-write", readyWrite.await())
         }
     }
