@@ -7,6 +7,10 @@ import kotlin.time.ComparableTimeMark
 import kotlin.time.Duration
 import kotlin.time.TimeSource
 
+internal const val TIMER_QUEUE_SIZE: Int = 1000
+internal const val READ: Int = 0
+internal const val WRITE: Int = 1
+
 /**
  * A read or write direction for I/O readiness.
  */
