@@ -10,6 +10,32 @@ import kotlin.time.TimeSource
 
 class TimerTest {
     @Test
+    fun smoke() {
+        val timer = Timer.after(1.seconds)
+        assertTrue(timer.willFire())
+    }
+
+    @Test
+    fun interval() {
+        val timer = Timer.interval(50.milliseconds)
+        assertTrue(timer.willFire())
+    }
+
+    @Test
+    fun pollAcrossTasks() {
+        val timer = Timer.after(1.seconds)
+        assertTrue(timer.willFire())
+    }
+
+    @Test
+    fun set() {
+        val timer = Timer.after(10.seconds)
+        assertTrue(timer.willFire())
+        timer.setAfter(20.milliseconds)
+        assertTrue(timer.willFire())
+    }
+
+    @Test
     fun testNeverTimer() {
         val timer = Timer.never()
         assertFalse(timer.willFire())
