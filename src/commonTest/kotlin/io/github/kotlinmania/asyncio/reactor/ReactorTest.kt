@@ -1,4 +1,4 @@
-// port-lint: tests reactor.rs
+// port-lint: tests async-io/src/reactor.rs
 package io.github.kotlinmania.asyncio.reactor
 
 import io.github.kotlinmania.asyncio.runSync

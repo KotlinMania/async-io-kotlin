@@ -4,13 +4,13 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 10/10 (100.0%)
-- **Function parity:** 89/133 matched (target 131) — 66.9%
-- **Class/type parity:** 22/34 matched (target 42) — 64.7%
-- **Combined symbol parity:** 111/167 matched (target 173) — 66.5%
-- **Average inline-code cosine:** 0.22 (function body across 10 matched files)
-- **Average documentation cosine:** 0.60 (doc text across 10 matched files)
-- **Cheat-zeroed Files:** 1
+- **Files Present:** 10/23 (43.5%)
+- **Function parity:** 89/202 matched (target 131) — 44.1%
+- **Class/type parity:** 22/44 matched (target 42) — 50.0%
+- **Combined symbol parity:** 111/246 matched (target 173) — 45.1%
+- **Average inline-code cosine:** 0.23 (function body across 9 matched files)
+- **Average documentation cosine:** 0.63 (doc text across 9 matched files)
+- **Cheat-zeroed Files:** 2
 - **Critical Issues:** 10 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -27,7 +27,7 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. reactor
+### 1. async-io.reactor
 
 - **Target:** `reactor.Reactor`
 - **Similarity:** 0.32
@@ -38,18 +38,18 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 10/11 matched (target 13)
 - **Missing types:** `Output`
 
-### 2. lib
+### 2. async-io.lib
 
-- **Target:** `asyncio.Lib`
-- **Similarity:** 0.18
+- **Target:** `asyncio.Lib [STUB]`
+- **Similarity:** 0.00
 - **Dependents:** 0
-- **Priority Score:** 316308.2
+- **Priority Score:** 316310.0
 - **Functions:** 29/57 matched (target 31)
 - **Missing functions:** `drop`, `poll`, `poll_next`, `as_raw_fd`, `as_fd`, `try_from`, `as_raw_socket`, `as_socket`, `poll_read`, `poll_read_vectored`, `poll_write`, `poll_write_vectored`, `poll_flush`, `poll_close`, `bind`, `accept`, `incoming`, `connect`, `peek`, `recv_from`, `peek_from`, `send_to`, `recv`, `send`, `pair`, `unbound`, `setup_networking`, `convert_path_to_socket_address`
 - **Types:** 3/6 matched (target 3)
 - **Missing types:** `Output`, `Item`, `Error`
 
-### 3. driver
+### 3. async-io.driver
 
 - **Target:** `asyncio.Driver`
 - **Similarity:** 0.05
@@ -126,7 +126,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 2)
 - **Missing types:** _none_
 
-### 10. os
+### 10. async-io.os
 
 - **Target:** `os.Os [ZERO]`
 - **Similarity:** 0.00
