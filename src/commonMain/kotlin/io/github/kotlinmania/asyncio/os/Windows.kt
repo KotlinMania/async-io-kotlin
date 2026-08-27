@@ -125,4 +125,3 @@ class Waitable<T>(
         fun <T> tryFrom(handle: Any): Waitable<T> = Waitable(null)
     }
 }
-

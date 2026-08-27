@@ -365,4 +365,3 @@ class Reactor private constructor() {
         internal fun get(): Reactor = instance
     }
 }
-

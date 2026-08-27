@@ -140,4 +140,3 @@ class Filter<T : Queueable>(
         fun <T : Queueable> tryFrom(fd: Any): Filter<T> = Filter(null)
     }
 }
-
