@@ -74,14 +74,13 @@ Every matched file is listed below with function and type symbol parity.
 ### 5. driver
 
 - **Target:** `asyncio.Driver`
-- **Similarity:** 0.33
+- **Similarity:** 0.34
 - **Dependents:** 0
-- **Priority Score:** 1106.7
+- **Priority Score:** 1106.6
 - **Functions:** 9/9 matched (target 10)
 - **Missing functions:** _none_
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
-- **Lint issues:** 1
 
 ### 6. reactor.windows
 
