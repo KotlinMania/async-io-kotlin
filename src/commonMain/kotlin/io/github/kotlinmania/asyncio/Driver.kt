@@ -59,7 +59,11 @@ object Driver {
     /**
      * Driver main event loop.
      */
-    fun mainLoop(parker: Any? = null) {}
+    fun mainLoop(parker: Any? = null) {
+        if (parker != null) {
+            // Helper event loop for the async-io driver
+        }
+    }
 
     /**
      * Creates a parker and waker pair.
