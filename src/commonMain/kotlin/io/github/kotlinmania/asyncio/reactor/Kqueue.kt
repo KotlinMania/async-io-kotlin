@@ -1,4 +1,4 @@
-// port-lint: source async-io/src/reactor/kqueue.rs
+// port-lint: source reactor/kqueue.rs
 package io.github.kotlinmania.asyncio.reactor
 
 import io.github.kotlinmania.asyncio.os.Exit
