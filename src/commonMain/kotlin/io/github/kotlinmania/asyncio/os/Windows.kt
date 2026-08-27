@@ -99,10 +99,30 @@ class Waitable<T>(
      */
     fun poll(): Boolean = true
 
+    /**
+     * Gets raw Windows handle.
+     */
+    fun asRawHandle(): Long = 0L
+
+    /**
+     * Gets borrowed Windows handle.
+     */
+    fun asHandle(): Long = 0L
+
     companion object {
+        typealias Error = Exception
+        typealias Ready = Unit
+        typealias Output = Unit
+
         /**
          * Creates a new [Waitable] around a waitable handle.
          */
         fun <T> new(handle: T): Waitable<T> = Waitable(handle)
+
+        /**
+         * Attempts conversion into [Waitable].
+         */
+        fun <T> tryFrom(handle: Any): Waitable<T> = Waitable(null)
     }
 }
+

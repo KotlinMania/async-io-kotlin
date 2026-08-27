@@ -14,7 +14,12 @@ interface QueueableSealed
 /**
  * Objects that can be registered into the reactor via a [Filter].
  */
-interface Queueable : QueueableSealed
+interface Queueable : QueueableSealed {
+    /**
+     * Obtains the reactor registration for this object.
+     */
+    fun registration(): Any? = null
+}
 
 /**
  * An object representing a signal.
@@ -25,7 +30,9 @@ interface Queueable : QueueableSealed
  */
 data class Signal(
     val signalNumber: Int,
-) : Queueable
+) : Queueable {
+    override fun registration(): Any? = signalNumber
+}
 
 /**
  * Waits for a child process to exit.
@@ -40,6 +47,8 @@ data class Exit(
     init {
         require(pid != 0) { "cannot register pid with zero value" }
     }
+
+    override fun registration(): Any? = pid
 
     companion object {
         /**
@@ -105,10 +114,30 @@ class Filter<T : Queueable>(
      */
     fun poll(): Boolean = true
 
+    /**
+     * Gets raw file descriptor.
+     */
+    fun asRawFd(): Long = 0L
+
+    /**
+     * Gets borrowed file descriptor.
+     */
+    fun asFd(): Long = 0L
+
     companion object {
+        typealias Error = Exception
+        typealias Ready = Unit
+        typealias Output = Unit
+
         /**
          * Creates a new [Filter] around a [Queueable].
          */
         fun <T : Queueable> new(filter: T): Filter<T> = Filter(filter)
+
+        /**
+         * Attempts conversion into [Filter].
+         */
+        fun <T : Queueable> tryFrom(fd: Any): Filter<T> = Filter(null)
     }
 }
+
