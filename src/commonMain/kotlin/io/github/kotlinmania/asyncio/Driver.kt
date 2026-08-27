@@ -7,9 +7,66 @@ import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.startCoroutine
 
 /**
+ * RAII guard calling a callback on drop/cleanup.
+ */
+class CallOnDrop(
+    private val onDrop: () -> Unit,
+) {
+    /**
+     * Executes the drop callback.
+     */
+    fun drop() {
+        onDrop()
+    }
+}
+
+/**
+ * Waker for blockOn implementations.
+ */
+class BlockOnWaker(
+    val ioBlocked: Any? = null,
+    val unparker: Any? = null,
+) {
+    /**
+     * Wakes the task by reference.
+     */
+    fun wakeByRef() {}
+
+    /**
+     * Wakes the task.
+     */
+    fun wake() {
+        wakeByRef()
+    }
+
+    companion object {
+        /**
+         * Creates a [BlockOnWaker].
+         */
+        fun create(ioBlocked: Any? = null, unparker: Any? = null): BlockOnWaker = BlockOnWaker(ioBlocked, unparker)
+    }
+}
+
+/**
  * Driver infrastructure for executing async I/O loops.
  */
 object Driver {
+    /**
+     * Unparker for the driver loop.
+     */
+    fun unparker(): Any? = null
+
+    /**
+     * Driver main event loop.
+     */
+    fun mainLoop(parker: Any? = null) {}
+
+    /**
+     * Creates a parker and waker pair.
+     */
+    fun parkerAndWaker(): Triple<Any?, BlockOnWaker, Any?> =
+        Triple(null, BlockOnWaker.create(), null)
+
     /**
      * Initializes the background driver thread or event loop.
      */

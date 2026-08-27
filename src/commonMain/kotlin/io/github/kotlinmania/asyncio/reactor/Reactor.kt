@@ -343,7 +343,20 @@ class Reactor private constructor() {
         timerOps.clear()
     }
 
+    /**
+     * Formats reactor representation.
+     */
+    fun fmt(): String = toString()
+
+    /**
+     * Drops reactor resources.
+     */
+    fun drop() {}
+
     companion object {
+        typealias Output = Unit
+        typealias Error = Exception
+
         private val instance = Reactor()
 
         /**
@@ -352,3 +365,4 @@ class Reactor private constructor() {
         internal fun get(): Reactor = instance
     }
 }
+

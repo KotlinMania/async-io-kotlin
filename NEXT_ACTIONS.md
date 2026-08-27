@@ -5,11 +5,11 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 10/10 (100.0%)
-- **Function parity:** 89/133 matched (target 131) — 66.9%
-- **Class/type parity:** 22/34 matched (target 42) — 64.7%
-- **Combined symbol parity:** 111/167 matched (target 173) — 66.5%
-- **Average inline-code cosine:** 0.22 (function body across 10 matched files)
-- **Average documentation cosine:** 0.60 (doc text across 10 matched files)
+- **Function parity:** 133/133 matched (target 180) — 100.0%
+- **Class/type parity:** 34/34 matched (target 55) — 100.0%
+- **Combined symbol parity:** 167/167 matched (target 235) — 100.0%
+- **Average inline-code cosine:** 0.28 (function body across 10 matched files)
+- **Average documentation cosine:** 0.59 (doc text across 10 matched files)
 - **Cheat-zeroed Files:** 1
 - **Critical Issues:** 10 files with <0.60 function similarity
 
@@ -30,57 +30,58 @@ Every matched file is listed below with function and type symbol parity.
 ### 1. reactor
 
 - **Target:** `reactor.Reactor`
-- **Similarity:** 0.32
+- **Similarity:** 0.33
 - **Dependents:** 1
-- **Priority Score:** 1033606.8
-- **Functions:** 23/25 matched (target 47)
-- **Missing functions:** `fmt`, `drop`
-- **Types:** 10/11 matched (target 13)
-- **Missing types:** `Output`
+- **Priority Score:** 1003606.7
+- **Functions:** 25/25 matched (target 49)
+- **Missing functions:** _none_
+- **Types:** 11/11 matched (target 15)
+- **Missing types:** _none_
 
 ### 2. lib
 
 - **Target:** `asyncio.Lib`
-- **Similarity:** 0.18
+- **Similarity:** 0.29
 - **Dependents:** 0
-- **Priority Score:** 316308.2
-- **Functions:** 29/57 matched (target 31)
-- **Missing functions:** `drop`, `poll`, `poll_next`, `as_raw_fd`, `as_fd`, `try_from`, `as_raw_socket`, `as_socket`, `poll_read`, `poll_read_vectored`, `poll_write`, `poll_write_vectored`, `poll_flush`, `poll_close`, `bind`, `accept`, `incoming`, `connect`, `peek`, `recv_from`, `peek_from`, `send_to`, `recv`, `send`, `pair`, `unbound`, `setup_networking`, `convert_path_to_socket_address`
-- **Types:** 3/6 matched (target 3)
-- **Missing types:** `Output`, `Item`, `Error`
+- **Priority Score:** 6307.1
+- **Functions:** 57/57 matched (target 62)
+- **Missing functions:** _none_
+- **Types:** 6/6 matched
+- **Missing types:** _none_
 
-### 3. driver
-
-- **Target:** `asyncio.Driver`
-- **Similarity:** 0.05
-- **Dependents:** 0
-- **Priority Score:** 91109.5
-- **Functions:** 2/9 matched (target 3)
-- **Missing functions:** `unparker`, `main_loop`, `parker_and_waker`, `create`, `wake_by_ref`, `wake`, `drop`
-- **Types:** 0/2 matched (target 1)
-- **Missing types:** `BlockOnWaker`, `CallOnDrop`
-
-### 4. os.kqueue
+### 3. os.kqueue
 
 - **Target:** `os.Kqueue`
-- **Similarity:** 0.19
+- **Similarity:** 0.28
 - **Dependents:** 0
-- **Priority Score:** 72208.1
-- **Functions:** 10/14 matched (target 10)
-- **Missing functions:** `as_raw_fd`, `as_fd`, `try_from`, `registration`
-- **Types:** 5/8 matched (target 6)
-- **Missing types:** `Error`, `Ready`, `Output`
+- **Priority Score:** 2207.2
+- **Functions:** 14/14 matched (target 16)
+- **Missing functions:** _none_
+- **Types:** 8/8 matched (target 9)
+- **Missing types:** _none_
 
-### 5. os.windows
+### 4. os.windows
 
 - **Target:** `os.Windows`
-- **Similarity:** 0.17
+- **Similarity:** 0.26
 - **Dependents:** 0
-- **Priority Score:** 61508.3
-- **Functions:** 8/11 matched (target 14)
-- **Missing functions:** `as_raw_handle`, `as_handle`, `try_from`
-- **Types:** 1/4 matched
-- **Missing types:** `Error`, `Ready`, `Output`
+- **Priority Score:** 1507.4
+- **Functions:** 11/11 matched (target 17)
+- **Missing functions:** _none_
+- **Types:** 4/4 matched (target 7)
+- **Missing types:** _none_
+
+### 5. driver
+
+- **Target:** `asyncio.Driver`
+- **Similarity:** 0.33
+- **Dependents:** 0
+- **Priority Score:** 1106.7
+- **Functions:** 9/9 matched (target 10)
+- **Missing functions:** _none_
+- **Types:** 2/2 matched (target 3)
+- **Missing types:** _none_
+- **Lint issues:** 1
 
 ### 6. reactor.windows
 

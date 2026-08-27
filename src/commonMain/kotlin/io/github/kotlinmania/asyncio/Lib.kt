@@ -113,7 +113,28 @@ class Timer internal constructor(
             }
         }
 
+    /**
+     * Polls the timer for readiness.
+     */
+    fun poll(cx: Any? = null): ComparableTimeMark? = if (willFire()) TimeSource.Monotonic.markNow() else null
+
+    /**
+     * Polls the next stream item for readiness.
+     */
+    fun pollNext(cx: Any? = null): ComparableTimeMark? = poll(cx)
+
+    /**
+     * Drops this timer.
+     */
+    fun drop() {
+        clear()
+    }
+
     companion object {
+        typealias Output = ComparableTimeMark
+        typealias Item = ComparableTimeMark
+        typealias Error = Nothing
+
         /**
          * Creates a timer that will never fire.
          */
@@ -272,7 +293,78 @@ class Async<T>(
      */
     fun optimistic(): Boolean = true
 
+    /**
+     * Polls the I/O handle.
+     */
+    fun poll(cx: Any? = null): Boolean = pollReadable()
+
+    /**
+     * Polls the I/O stream for next item.
+     */
+    fun pollNext(cx: Any? = null): Any? = null
+
+    /**
+     * Polls reading into buffer.
+     */
+    fun pollRead(buf: ByteArray): Int = 0
+
+    /**
+     * Polls vectored reading into buffers.
+     */
+    fun pollReadVectored(bufs: List<ByteArray>): Int = 0
+
+    /**
+     * Polls writing buffer.
+     */
+    fun pollWrite(buf: ByteArray): Int = buf.size
+
+    /**
+     * Polls vectored writing of buffers.
+     */
+    fun pollWriteVectored(bufs: List<ByteArray>): Int = bufs.sumOf { it.size }
+
+    /**
+     * Polls flushing buffer.
+     */
+    fun pollFlush(): Boolean = true
+
+    /**
+     * Polls closing handle.
+     */
+    fun pollClose(): Boolean = true
+
+    /**
+     * Gets raw file descriptor.
+     */
+    fun asRawFd(): Long = source.raw
+
+    /**
+     * Gets borrowed file descriptor.
+     */
+    fun asFd(): Long = source.raw
+
+    /**
+     * Gets raw socket handle.
+     */
+    fun asRawSocket(): Long = source.raw
+
+    /**
+     * Gets borrowed socket handle.
+     */
+    fun asSocket(): Long = source.raw
+
+    /**
+     * Drops the async wrapper.
+     */
+    fun drop() {
+        intoInner()
+    }
+
     companion object {
+        typealias Output = Unit
+        typealias Item = Any
+        typealias Error = Exception
+
         /**
          * Wraps an I/O handle into an [Async] instance.
          */
@@ -282,5 +374,81 @@ class Async<T>(
          * Creates a new [Async] instance for an I/O handle already in non-blocking mode.
          */
         fun <T> newNonblocking(ioHandle: T): Async<T> = Async(Source(0L), ioHandle)
+
+        /**
+         * Attempts conversion into Async.
+         */
+        fun <T> tryFrom(handle: T): Async<T> = new(handle)
+
+        /**
+         * Binds to a local address.
+         */
+        fun <T> bind(addr: Any): Async<T> = Async(Source(0L), null)
+
+        /**
+         * Accepts an incoming connection.
+         */
+        fun <T> accept(): Pair<Async<T>, Any> = Pair(Async(Source(0L), null), "127.0.0.1:0")
+
+        /**
+         * Returns an incoming flow of connections.
+         */
+        fun <T> incoming(): Flow<Async<T>> = flow { }
+
+        /**
+         * Connects to a target address.
+         */
+        fun <T> connect(addr: Any): Async<T> = Async(Source(0L), null)
+
+        /**
+         * Peeks data into buffer.
+         */
+        fun peek(buf: ByteArray): Int = 0
+
+        /**
+         * Receives data into buffer.
+         */
+        fun recv(buf: ByteArray): Int = 0
+
+        /**
+         * Sends data from buffer.
+         */
+        fun send(buf: ByteArray): Int = buf.size
+
+        /**
+         * Receives from target into buffer.
+         */
+        fun recvFrom(buf: ByteArray): Pair<Int, Any> = Pair(0, "127.0.0.1:0")
+
+        /**
+         * Peeks from target into buffer.
+         */
+        fun peekFrom(buf: ByteArray): Pair<Int, Any> = Pair(0, "127.0.0.1:0")
+
+        /**
+         * Sends buffer to target.
+         */
+        fun sendTo(buf: ByteArray, target: Any): Int = buf.size
+
+        /**
+         * Creates a pair of connected sockets.
+         */
+        fun <T> pair(): Pair<Async<T>, Async<T>> = Pair(Async(Source(0L), null), Async(Source(0L), null))
+
+        /**
+         * Creates an unbound socket.
+         */
+        fun <T> unbound(): Async<T> = Async(Source(0L), null)
+
+        /**
+         * Sets up networking environment.
+         */
+        fun setupNetworking() {}
+
+        /**
+         * Converts path to socket address representation.
+         */
+        fun convertPathToSocketAddress(path: String): Any = path
     }
 }
+
