@@ -1,4 +1,4 @@
-// port-lint: source reactor.rs
+// port-lint: source async-io/src/reactor.rs
 package io.github.kotlinmania.asyncio.reactor
 
 import kotlinx.coroutines.sync.Mutex
