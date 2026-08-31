@@ -1,4 +1,4 @@
-// port-lint: tests ../tests/block_on.rs
+// port-lint: tests async-io/tests/block_on.rs
 package io.github.kotlinmania.asyncio
 
 import kotlin.test.Test

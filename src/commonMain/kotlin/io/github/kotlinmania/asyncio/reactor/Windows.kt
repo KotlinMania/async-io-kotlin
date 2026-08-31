@@ -1,4 +1,4 @@
-// port-lint: source reactor/windows.rs
+// port-lint: source async-io/src/reactor/windows.rs
 package io.github.kotlinmania.asyncio.reactor
 
 import io.github.kotlinmania.asyncio.os.BorrowedHandle
