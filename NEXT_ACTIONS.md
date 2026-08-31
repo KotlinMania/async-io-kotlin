@@ -4,13 +4,13 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 10/10 (100.0%)
-- **Function parity:** 133/133 matched (target 180) — 100.0%
-- **Class/type parity:** 34/34 matched (target 55) — 100.0%
-- **Combined symbol parity:** 167/167 matched (target 235) — 100.0%
-- **Average inline-code cosine:** 0.28 (function body across 10 matched files)
-- **Average documentation cosine:** 0.59 (doc text across 10 matched files)
-- **Cheat-zeroed Files:** 1
+- **Files Present:** 10/23 (43.5%)
+- **Function parity:** 133/202 matched (target 180) — 65.8%
+- **Class/type parity:** 34/44 matched (target 55) — 77.3%
+- **Combined symbol parity:** 167/246 matched (target 235) — 67.9%
+- **Average inline-code cosine:** 0.28 (function body across 9 matched files)
+- **Average documentation cosine:** 0.61 (doc text across 9 matched files)
+- **Cheat-zeroed Files:** 2
 - **Critical Issues:** 10 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -27,7 +27,7 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. reactor
+### 1. async-io.reactor
 
 - **Target:** `reactor.Reactor`
 - **Similarity:** 0.33
@@ -38,12 +38,12 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 11/11 matched (target 15)
 - **Missing types:** _none_
 
-### 2. lib
+### 2. async-io.lib
 
-- **Target:** `asyncio.Lib`
-- **Similarity:** 0.29
+- **Target:** `asyncio.Lib [STUB]`
+- **Similarity:** 0.00
 - **Dependents:** 0
-- **Priority Score:** 6307.1
+- **Priority Score:** 6310.0
 - **Functions:** 57/57 matched (target 62)
 - **Missing functions:** _none_
 - **Types:** 6/6 matched
@@ -71,7 +71,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 7)
 - **Missing types:** _none_
 
-### 5. driver
+### 5. async-io.driver
 
 - **Target:** `asyncio.Driver`
 - **Similarity:** 0.34
@@ -126,7 +126,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 2)
 - **Missing types:** _none_
 
-### 10. os
+### 10. async-io.os
 
 - **Target:** `os.Os [ZERO]`
 - **Similarity:** 0.00
