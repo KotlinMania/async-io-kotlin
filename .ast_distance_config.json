@@ -2,7 +2,7 @@
   "type": "port",
   "name": "async-io-kotlin",
   "source": {
-    "path": "tmp/async-io/src",
+    "path": "tmp",
     "lang": "rust"
   },
   "target": {
