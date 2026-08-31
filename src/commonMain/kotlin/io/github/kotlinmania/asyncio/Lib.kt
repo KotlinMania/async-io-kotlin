@@ -1,4 +1,4 @@
-// port-lint: source async-io/src/lib.rs
+// port-lint: source lib.rs
 package io.github.kotlinmania.asyncio
 
 import io.github.kotlinmania.asyncio.reactor.Readable
