@@ -1,4 +1,4 @@
-// port-lint: tests async-io/src/os.rs
+// port-lint: tests os.rs
 package io.github.kotlinmania.asyncio.os
 
 import io.github.kotlinmania.asyncio.runSync

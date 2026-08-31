@@ -1,4 +1,4 @@
-// port-lint: source async-io/src/reactor/unix.rs
+// port-lint: source reactor/unix.rs
 package io.github.kotlinmania.asyncio.reactor
 
 import io.github.kotlinmania.asyncio.os.BorrowedFd
