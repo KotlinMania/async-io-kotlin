@@ -1,4 +1,4 @@
-// port-lint: source async-io/src/os.rs
+// port-lint: source os.rs
 package io.github.kotlinmania.asyncio.os
 
 /**
