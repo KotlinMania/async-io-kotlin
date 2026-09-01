@@ -17,6 +17,8 @@
   },
   "reexport_modules": [
     "mod.rs",
-    "lib.rs"
+    "lib.rs",
+    "os.rs",
+    "async-io/src/os.rs"
   ]
 }

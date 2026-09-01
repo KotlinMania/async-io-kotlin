@@ -4,10 +4,10 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 10/10 (100.0%)
-- **Function parity:** 133/133 matched (target 180) — 100.0%
-- **Class/type parity:** 34/34 matched (target 55) — 100.0%
-- **Combined symbol parity:** 167/167 matched (target 235) — 100.0%
+- **Files Present:** 10/23 (43.5%)
+- **Function parity:** 133/202 matched (target 180) — 65.8%
+- **Class/type parity:** 34/44 matched (target 55) — 77.3%
+- **Combined symbol parity:** 167/246 matched (target 235) — 67.9%
 - **Average inline-code cosine:** 0.28 (function body across 9 matched files)
 - **Average documentation cosine:** 0.61 (doc text across 9 matched files)
 - **Cheat-zeroed Files:** 2
@@ -27,9 +27,9 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. reactor
+### 1. async-io.reactor
 
-- **Target:** `reactor.Reactor [PROVENANCE-FALLBACK]`
+- **Target:** `reactor.Reactor`
 - **Similarity:** 0.33
 - **Dependents:** 1
 - **Priority Score:** 1003606.7
@@ -37,15 +37,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 11/11 matched (target 15)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/reactor.rs` vs expected `reactor.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:async-io/src/reactor.rs` vs expected `reactor.rs`
-- **Proposed provenance header:** `// port-lint: source reactor.rs` (current: `// port-lint: source async-io/src/reactor.rs`)
-- **Proposed provenance header:** `// port-lint: tests reactor.rs` (current: `// port-lint: tests async-io/src/reactor.rs`)
-- **Lint issues:** 2
 
-### 2. lib
+### 2. async-io.lib
 
-- **Target:** `asyncio.Lib [STUB] [PROVENANCE-FALLBACK]`
+- **Target:** `asyncio.Lib [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 6310.0
@@ -53,13 +48,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 6/6 matched
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/lib.rs` vs expected `lib.rs`
-- **Proposed provenance header:** `// port-lint: source lib.rs` (current: `// port-lint: source async-io/src/lib.rs`)
-- **Lint issues:** 1
 
 ### 3. os.kqueue
 
-- **Target:** `os.Kqueue [PROVENANCE-FALLBACK]`
+- **Target:** `os.Kqueue`
 - **Similarity:** 0.28
 - **Dependents:** 0
 - **Priority Score:** 2207.2
@@ -67,13 +59,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 8/8 matched (target 9)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/os/kqueue.rs` vs expected `os/kqueue.rs`
-- **Proposed provenance header:** `// port-lint: source os/kqueue.rs` (current: `// port-lint: source async-io/src/os/kqueue.rs`)
-- **Lint issues:** 1
 
 ### 4. os.windows
 
-- **Target:** `os.Windows [PROVENANCE-FALLBACK]`
+- **Target:** `os.Windows`
 - **Similarity:** 0.26
 - **Dependents:** 0
 - **Priority Score:** 1507.4
@@ -81,13 +70,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 4/4 matched (target 7)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/os/windows.rs` vs expected `os/windows.rs`
-- **Proposed provenance header:** `// port-lint: source os/windows.rs` (current: `// port-lint: source async-io/src/os/windows.rs`)
-- **Lint issues:** 1
 
-### 5. driver
+### 5. async-io.driver
 
-- **Target:** `asyncio.Driver [PROVENANCE-FALLBACK]`
+- **Target:** `asyncio.Driver`
 - **Similarity:** 0.34
 - **Dependents:** 0
 - **Priority Score:** 1106.6
@@ -95,13 +81,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/driver.rs` vs expected `driver.rs`
-- **Proposed provenance header:** `// port-lint: source driver.rs` (current: `// port-lint: source async-io/src/driver.rs`)
-- **Lint issues:** 1
 
 ### 6. reactor.windows
 
-- **Target:** `reactor.Windows [PROVENANCE-FALLBACK]`
+- **Target:** `reactor.Windows`
 - **Similarity:** 0.44
 - **Dependents:** 0
 - **Priority Score:** 705.6
@@ -109,13 +92,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/reactor/windows.rs` vs expected `reactor/windows.rs`
-- **Proposed provenance header:** `// port-lint: source reactor/windows.rs` (current: `// port-lint: source async-io/src/reactor/windows.rs`)
-- **Lint issues:** 1
 
 ### 7. reactor.kqueue
 
-- **Target:** `reactor.Kqueue [PROVENANCE-FALLBACK]`
+- **Target:** `reactor.Kqueue`
 - **Similarity:** 0.33
 - **Dependents:** 0
 - **Priority Score:** 606.7
@@ -123,13 +103,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/reactor/kqueue.rs` vs expected `reactor/kqueue.rs`
-- **Proposed provenance header:** `// port-lint: source reactor/kqueue.rs` (current: `// port-lint: source async-io/src/reactor/kqueue.rs`)
-- **Lint issues:** 1
 
 ### 8. reactor.unix
 
-- **Target:** `reactor.Unix [PROVENANCE-FALLBACK]`
+- **Target:** `reactor.Unix`
 - **Similarity:** 0.40
 - **Dependents:** 0
 - **Priority Score:** 606.0
@@ -137,13 +114,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 2)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/reactor/unix.rs` vs expected `reactor/unix.rs`
-- **Proposed provenance header:** `// port-lint: source reactor/unix.rs` (current: `// port-lint: source async-io/src/reactor/unix.rs`)
-- **Lint issues:** 1
 
 ### 9. os.unix
 
-- **Target:** `os.Unix [PROVENANCE-FALLBACK]`
+- **Target:** `os.Unix`
 - **Similarity:** 0.13
 - **Dependents:** 0
 - **Priority Score:** 108.7
@@ -151,13 +125,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 2)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/os/unix.rs` vs expected `os/unix.rs`
-- **Proposed provenance header:** `// port-lint: source os/unix.rs` (current: `// port-lint: source async-io/src/os/unix.rs`)
-- **Lint issues:** 1
 
-### 10. os
+### 10. async-io.os
 
-- **Target:** `os.Os [ZERO] [PROVENANCE-FALLBACK]`
+- **Target:** `os.Os [ZERO]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 10.0
@@ -165,11 +136,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 2)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `async-io/src/os.rs` vs expected `os.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:async-io/src/os.rs` vs expected `os.rs`
-- **Proposed provenance header:** `// port-lint: source os.rs` (current: `// port-lint: source async-io/src/os.rs`)
-- **Proposed provenance header:** `// port-lint: tests os.rs` (current: `// port-lint: tests async-io/src/os.rs`)
-- **Lint issues:** 2
 
 ## Success Criteria
 
