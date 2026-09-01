@@ -1,4 +1,4 @@
-// port-lint: source async-io/src/driver.rs
+// port-lint: source driver.rs
 package io.github.kotlinmania.asyncio
 
 import kotlin.coroutines.Continuation
