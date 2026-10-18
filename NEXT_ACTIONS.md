@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 10/10 (100.0%)
-- **Function parity:** 133/133 matched (target 180) — 100.0%
-- **Class/type parity:** 34/34 matched (target 55) — 100.0%
-- **Combined symbol parity:** 167/167 matched (target 235) — 100.0%
-- **Average inline-code cosine:** 0.28 (function body across 10 matched files)
-- **Average documentation cosine:** 0.59 (doc text across 10 matched files)
-- **Cheat-zeroed Files:** 1
-- **Critical Issues:** 10 files with <0.60 function similarity
+- **Files Present:** 8/23 (34.8%)
+- **Function parity:** 76/145 matched (target 115) — 52.4%
+- **Class/type parity:** 28/38 matched (target 47) — 73.7%
+- **Combined symbol parity:** 104/183 matched (target 162) — 56.8%
+- **Average inline-code cosine:** 0.31 (function body across 8 matched files)
+- **Average documentation cosine:** 0.61 (doc text across 8 matched files)
+- **Cheat-zeroed Files:** 0
+- **Critical Issues:** 8 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -27,9 +27,9 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. reactor
+### 1. async-io.reactor
 
-- **Target:** `reactor.Reactor`
+- **Target:** `reactor.Reactor [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.33
 - **Dependents:** 1
 - **Priority Score:** 1003606.7
@@ -37,21 +37,15 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 11/11 matched (target 15)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `reactor.rs` vs expected `reactor.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:reactor.rs` vs expected `reactor.rs`
+- **Proposed provenance header:** `// port-lint: source reactor.rs` (current: `// port-lint: source reactor.rs`)
+- **Proposed provenance header:** `// port-lint: tests reactor.rs` (current: `// port-lint: tests reactor.rs`)
+- **Lint issues:** 2
 
-### 2. lib
+### 2. os.kqueue
 
-- **Target:** `asyncio.Lib`
-- **Similarity:** 0.29
-- **Dependents:** 0
-- **Priority Score:** 6307.1
-- **Functions:** 57/57 matched (target 62)
-- **Missing functions:** _none_
-- **Types:** 6/6 matched
-- **Missing types:** _none_
-
-### 3. os.kqueue
-
-- **Target:** `os.Kqueue`
+- **Target:** `os.Kqueue [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.28
 - **Dependents:** 0
 - **Priority Score:** 2207.2
@@ -59,10 +53,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 8/8 matched (target 9)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `os/kqueue.rs` vs expected `os/kqueue.rs`
+- **Proposed provenance header:** `// port-lint: source os/kqueue.rs` (current: `// port-lint: source os/kqueue.rs`)
+- **Lint issues:** 1
 
-### 4. os.windows
+### 3. os.windows
 
-- **Target:** `os.Windows`
+- **Target:** `os.Windows [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.26
 - **Dependents:** 0
 - **Priority Score:** 1507.4
@@ -70,10 +67,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 4/4 matched (target 7)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `os/windows.rs` vs expected `os/windows.rs`
+- **Proposed provenance header:** `// port-lint: source os/windows.rs` (current: `// port-lint: source os/windows.rs`)
+- **Lint issues:** 1
 
-### 5. driver
+### 4. async-io.driver
 
-- **Target:** `asyncio.Driver`
+- **Target:** `asyncio.Driver [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.34
 - **Dependents:** 0
 - **Priority Score:** 1106.6
@@ -81,10 +81,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `driver.rs` vs expected `driver.rs`
+- **Proposed provenance header:** `// port-lint: source driver.rs` (current: `// port-lint: source driver.rs`)
+- **Lint issues:** 1
 
-### 6. reactor.windows
+### 5. reactor.windows
 
-- **Target:** `reactor.Windows`
+- **Target:** `reactor.Windows [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.44
 - **Dependents:** 0
 - **Priority Score:** 705.6
@@ -92,10 +95,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `reactor/windows.rs` vs expected `reactor/windows.rs`
+- **Proposed provenance header:** `// port-lint: source reactor/windows.rs` (current: `// port-lint: source reactor/windows.rs`)
+- **Lint issues:** 1
 
-### 7. reactor.kqueue
+### 6. reactor.kqueue
 
-- **Target:** `reactor.Kqueue`
+- **Target:** `reactor.Kqueue [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.33
 - **Dependents:** 0
 - **Priority Score:** 606.7
@@ -103,10 +109,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `reactor/kqueue.rs` vs expected `reactor/kqueue.rs`
+- **Proposed provenance header:** `// port-lint: source reactor/kqueue.rs` (current: `// port-lint: source reactor/kqueue.rs`)
+- **Lint issues:** 1
 
-### 8. reactor.unix
+### 7. reactor.unix
 
-- **Target:** `reactor.Unix`
+- **Target:** `reactor.Unix [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.40
 - **Dependents:** 0
 - **Priority Score:** 606.0
@@ -114,10 +123,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 2)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `reactor/unix.rs` vs expected `reactor/unix.rs`
+- **Proposed provenance header:** `// port-lint: source reactor/unix.rs` (current: `// port-lint: source reactor/unix.rs`)
+- **Lint issues:** 1
 
-### 9. os.unix
+### 8. os.unix
 
-- **Target:** `os.Unix`
+- **Target:** `os.Unix [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.13
 - **Dependents:** 0
 - **Priority Score:** 108.7
@@ -125,17 +137,9 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 2)
 - **Missing types:** _none_
-
-### 10. os
-
-- **Target:** `os.Os [ZERO]`
-- **Similarity:** 0.00
-- **Dependents:** 0
-- **Priority Score:** 10.0
-- **Functions:** 0/0 matched (target 3)
-- **Missing functions:** _none_
-- **Types:** 0/0 matched (target 2)
-- **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `os/unix.rs` vs expected `os/unix.rs`
+- **Proposed provenance header:** `// port-lint: source os/unix.rs` (current: `// port-lint: source os/unix.rs`)
+- **Lint issues:** 1
 
 ## Success Criteria
 
@@ -145,4 +149,18 @@ For each file to be considered "complete":
 - All tests ported
 - Documentation ported
 - port-lint header present
+
+## Reexport / Wiring Modules
+
+These files match `reexport_modules` patterns in `.ast_distance_config.json`. They are filtered out of
+normal priority and missing-file ladders because they are wiring
+modules, not direct logic ports. Consult them for call-site routing;
+do not treat them as the next implementation target by default.
+
+### Missing
+
+| Source | Expected target | Deps | Source path | Expected path |
+|--------|-----------------|------|-------------|---------------|
+| `async-io.lib` | `asyncio.src.Lib` | 0 | `async-io/src/lib.rs` | `asyncio/src/Lib.kt` |
+| `async-io.os` | `asyncio.src.os.Os` | 0 | `async-io/src/os.rs` | `asyncio/src/os/Os.kt` |
 
