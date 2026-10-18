@@ -1,6 +1,7 @@
 // port-lint: tests tests/async.rs
 package io.github.kotlinmania.asyncio
 
+import io.github.kotlinmania.futures.TaskContext
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -201,5 +202,24 @@ class AsyncTest {
     fun abstractSocket() {
         val async = Async.new("abstract-socket")
         assertTrue(async.optimistic())
+    }
+
+    @Test
+    fun testAsyncReadWriteInterfaces() {
+        val async = Async.new("test-io")
+        val ctx = TaskContext()
+        val readBuf = ByteArray(16)
+        val readPoll = async.pollRead(ctx, readBuf, 0, 16)
+        assertTrue(readPoll.isReady())
+
+        val writeBuf = ByteArray(8)
+        val writePoll = async.pollWrite(ctx, writeBuf, 0, 8)
+        assertTrue(writePoll.isReady())
+
+        val flushPoll = async.pollFlush(ctx)
+        assertTrue(flushPoll.isReady())
+
+        val closePoll = async.pollClose(ctx)
+        assertTrue(closePoll.isReady())
     }
 }

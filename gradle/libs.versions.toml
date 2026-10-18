@@ -9,6 +9,8 @@ detekt = "2.0.0-alpha.6"
 ktlintEngine = "1.8.0"
 ktlint = "14.2.0"
 kotlinxBenchmark = "0.5.0"
+futures = "0.2.1"
+tempfile = "0.1.0"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -26,6 +28,8 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionsImmutable" }
 kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinxBenchmark" }
+futures-kotlin = { module = "io.github.kotlinmania:futures-kotlin", version.ref = "futures" }
+tempfile-kotlin = { module = "io.github.kotlinmania:tempfile-kotlin", version.ref = "tempfile" }
 
 [bundles]
 asyncio-commonMain = [
@@ -34,4 +38,8 @@ asyncio-commonMain = [
   "kotlinx-serialization-json",
   "kotlinx-datetime",
   "collections-immutable",
+  "futures-kotlin",
+]
+asyncio-commonTest = [
+  "tempfile-kotlin",
 ]
